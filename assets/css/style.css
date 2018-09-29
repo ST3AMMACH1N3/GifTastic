@@ -21,6 +21,10 @@ label {
     font-size: 20px;
 }
 
+p {
+    padding: 5px;
+}
+
 .button {
     background: #008080;
     color: #fff;
@@ -39,11 +43,12 @@ label {
 }
 
 .img {
-    border: 1px solid #000;
-    background: #f00;
+    border: 1px solid #aaa;
+    background: #ddd;
     float: left;
     max-width: 400px;
     margin: 0px 20px 20px 0px;
+    overflow: hidden;
 }
 
 #gif-div {

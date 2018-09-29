@@ -6,8 +6,9 @@ $(document).ready(() => {
 
     function addButton(event) {
         event.preventDefault();
-        if ($("#text-box").val() !== "") {
-            topics.push($("#text-box").val());
+        let value = $("#text-box").val();
+        if (value !== "") {
+            topics.push(value);
             $("#text-box").val("");
             createButtons();
         }
@@ -42,14 +43,21 @@ $(document).ready(() => {
         }).then((response) => {
             let data = response.data;
             for(let i = 0; i < data.length; i++) {
+                let div = $("<div>").addClass("img");
+                let title = data[i].title.trim().replace(/gif/i, "");
+                let titleP;
+                if (title !== "") {
+                    titleP = $("<p>").text(`Title: ${title}`)
+                }
+                let ratingP = $("<p>").text(`Rating: ${data[i].rating}`);
                 let image = $("<img>");
-                image.addClass("img");
                 image.attr("data-state", "still");
                 image.attr("data-still", data[i].images.fixed_height_still.url);
                 image.attr("data-animated", data[i].images.fixed_height.url);
                 image.attr("src", data[i].images.fixed_height_still.url);
                 image.attr("alt", data[i].title);
-                $("#gif-div").append(image);
+                div.append(image, titleP, ratingP);
+                $("#gif-div").append(div);
             }
         });
     }
